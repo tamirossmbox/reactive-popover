@@ -5,6 +5,11 @@ import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import InfoContent from "./InfoContent";
 
+const GridWrapper = styled.div`
+  display: grid;
+  grid-template-columns: auto;
+`;
+
 const Separator = styled.div`
   margin: 8px;
 `;
@@ -22,11 +27,11 @@ export default function App() {
       <hr />
 
       <SomeContainer>
-        <Popover contentComponent={<InfoContent />}>
+        <Popover contentComponent={<InfoContent />} direction="row">
           <FontAwesomeIcon icon={faInfoCircle} size="2x" color="#3F9EEA" />
         </Popover>
         <Separator />
-        <Popover contentComponent={<InfoContent />}>
+        <Popover contentComponent={<InfoContent />} direction="column">
           <FontAwesomeIcon icon={faInfoCircle} size="2x" color="#3F9EEA" />
         </Popover>
       </SomeContainer>

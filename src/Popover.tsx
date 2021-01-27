@@ -1,17 +1,8 @@
-import React, {
-  ReactNode,
-  useState,
-  CSSProperties,
-  useRef
-  // useEffect
-} from "react";
+import React, { ReactNode, useState, CSSProperties, useRef } from "react";
 import styled from "styled-components";
 import PopoverContent from "./PopoverContent";
 import { useOnClickOutside } from "./hooks";
-
-type Direction = "row" | "column";
-// The Position is about the Popover component relative to the Content.
-type Position = "top" | "right" | "bottom" | "left";
+import { Direction, Position } from "./common";
 
 const PopoverWrapper = styled.span`
   position: relative;
@@ -20,7 +11,7 @@ const PopoverWrapper = styled.span`
   cursor: pointer;
 `;
 
-interface PopoverProps {
+export interface PopoverProps {
   style?: CSSProperties;
   contentComponent?: ReactNode;
   direction?: Direction;
@@ -29,10 +20,8 @@ interface PopoverProps {
 }
 
 const Popover = (props: React.PropsWithChildren<PopoverProps>) => {
-  const { style, children, contentComponent } = props;
+  const { style, children, contentComponent, direction } = props;
 
-  // const [direction, setDirection] = useState<Direction>("row");
-  // const [position, setPosition] = useState<Position>("left");
   const [isOpen, setIsOpen] = useState(false);
 
   const popoverRef = useRef(null);
@@ -48,7 +37,9 @@ const Popover = (props: React.PropsWithChildren<PopoverProps>) => {
     <PopoverWrapper onClick={handleClick} style={style} ref={popoverRef}>
       {children}
       {isOpen && (
-        <PopoverContent ref={contentRef}>{contentComponent}</PopoverContent>
+        <PopoverContent ref={contentRef} direction={direction}>
+          {contentComponent}
+        </PopoverContent>
       )}
     </PopoverWrapper>
   );
