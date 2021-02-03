@@ -1,45 +1,80 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
-import { PopoverProps } from "./Popover";
+import { PopoverProps } from "./common";
 
-const buttom = css`
-  top: calc(100% + 12px);
+// row styles
+const row = css<PopoverProps>`
+  transform: translate(calc(${({ popoverWidth }) => popoverWidth}px + 12px), 0);
 `;
 
-// Directions styles
+const rowReverse = css<PopoverProps>`
+  transform: translate(
+    calc(-${({ popoverWidth }) => popoverWidth}px + -12px),
+    0
+  );
+`;
+
+// column styles
 const column = css`
-  border: 2px dashed blue;
-  left: calc(100% + 12px);
+  transform: translate(
+    0,
+    calc(${({ popoverHeight }) => popoverHeight}px + 12px)
+  );
 `;
 
-const row = css`
-  border: 1px dashed red;
-  ${buttom}
+const columnReverse = css<PopoverProps>`
+  transform: translate(
+    0,
+    calc(-${({ popoverHeight }) => popoverHeight}px - 12px)
+  );
 `;
 
-// Positions styles
+const getDirection = (direction: any) => {
+  switch (direction) {
+    case "row":
+      return row;
+    case "row-reverse":
+      return rowReverse;
+    case "column":
+      return column;
+    case "column-reverse":
+      return columnReverse;
+    default:
+      return "row";
+  }
+};
 
-const ContentWrapper = styled.div<PopoverContentProps>`
+const ContentWrapper = styled.div<PopoverProps>`
+  display: flex;
   position: absolute;
   cursor: pointer;
-  ${({ direction }: any) => (direction === "row" ? row : column)}
+  ${({ direction }: any) => getDirection(direction)}
   ${({ style }) => style};
   z-index: 999;
 `;
 
-interface PopoverContentProps extends PopoverProps {
-  // style?: {};
-  content?: ReactNode;
-  // direction: "row" | "column";
-}
-
-type PropsType = React.PropsWithChildren<PopoverContentProps>;
+type PropsType = React.PropsWithChildren<PopoverProps>;
 
 const PopoverContent = React.forwardRef((props: PropsType, ref: any) => {
-  const { children, style, direction = "row" } = props;
+  const {
+    children,
+    style,
+    popoverWidth,
+    popoverHeight,
+    direction = "row",
+    alignItems = "start"
+  } = props;
 
+  console.log("alignItems vv", alignItems);
   return (
-    <ContentWrapper style={style} ref={ref} direction={direction}>
+    <ContentWrapper
+      style={style}
+      ref={ref}
+      direction={direction}
+      alignItems={alignItems}
+      popoverWidth={popoverWidth}
+      popoverHeight={popoverHeight}
+    >
       {children}
     </ContentWrapper>
   );

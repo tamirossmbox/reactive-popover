@@ -1,8 +1,15 @@
-/*
- * Direction describes if the Popover element (icon) is
- * above / below the Content element (like a column).
- */
-export type Direction = "row" | "column";
+import { ReactNode, CSSProperties } from "react";
 
-// Position is about the Popover component relative to the Content.
-export type Position = "top" | "right" | "bottom" | "left";
+export interface PopoverProps {
+  style?: CSSProperties;
+  contentComponent?: ReactNode;
+  direction?: Direction;
+  position?: string;
+  popoverWidth?: number;
+  popoverHeight?: number;
+  alignItems?: AlignItems;
+}
+
+export type Direction = "row" | "row-reverse" | "column" | "column-reverse";
+
+export type AlignItems = "start" | "end";
