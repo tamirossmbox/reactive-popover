@@ -1,18 +1,22 @@
 import { useEffect } from "react";
 
-export function useClickOutside(ref: any, cb: any) {
+export function useOnClickOutside(ref: any, handler: any) {
   useEffect(() => {
-    // Close if clicked outside of Component element
-    function handleClickOutside(event: any) {
-      if (ref.current && !ref.current.contains(event.target)) {
-        cb();
+    const listener = (event: any) => {
+      // Do nothing if clicking ref's element or descendent elements
+      if (!ref.current || ref.current.contains(event.target)) {
+        return;
       }
-    }
-    // Bind the event listener
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      // Unbind the event listener on clean up
-      document.removeEventListener("mousedown", handleClickOutside);
+
+      handler(event);
     };
-  }, [ref, cb]);
+
+    document.addEventListener("mousedown", listener);
+    document.addEventListener("touchstart", listener);
+
+    return () => {
+      document.removeEventListener("mousedown", listener);
+      document.removeEventListener("touchstart", listener);
+    };
+  }, [ref, handler]);
 }
