@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import PopoverContent from "./PopoverContent";
-import { useOnClickOutside } from "./hooks";
+import { useOnClickOutside } from "../../hooks";
 import { PopoverProps, Direction, AlignItems } from "./common";
 
 const PopoverWrapper = styled.span`

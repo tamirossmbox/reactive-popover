@@ -4,12 +4,15 @@ import { PopoverProps } from "./common";
 
 // row styles
 const row = css<PopoverProps>`
-  transform: translate(calc(${({ popoverWidth }) => popoverWidth}px + 12px), 0);
+  transform: translate(
+    calc(${({ popoverWidth }: PopoverProps) => popoverWidth}px + 12px),
+    0
+  );
 `;
 
 const rowReverse = css<PopoverProps>`
   transform: translate(
-    calc(-${({ popoverWidth }) => popoverWidth}px + -12px),
+    calc(-${({ popoverWidth }: PopoverProps) => popoverWidth}px + -12px),
     0
   );
 `;
@@ -18,14 +21,14 @@ const rowReverse = css<PopoverProps>`
 const column = css`
   transform: translate(
     0,
-    calc(${({ popoverHeight }) => popoverHeight}px + 12px)
+    calc(${({ popoverHeight }: PopoverProps) => popoverHeight}px + 12px)
   );
 `;
 
 const columnReverse = css<PopoverProps>`
   transform: translate(
     0,
-    calc(-${({ popoverHeight }) => popoverHeight}px - 12px)
+    calc(-${({ popoverHeight }: PopoverProps) => popoverHeight}px - 12px)
   );
 `;
 
@@ -49,7 +52,7 @@ const ContentWrapper = styled.div<PopoverProps>`
   position: absolute;
   cursor: pointer;
   ${({ direction }: any) => getDirection(direction)}
-  ${({ style }) => style};
+  ${({ style }: PopoverProps) => style};
   z-index: 999;
 `;
 
@@ -65,7 +68,6 @@ const PopoverContent = React.forwardRef((props: PropsType, ref: any) => {
     alignItems = "start"
   } = props;
 
-  console.log("alignItems vv", alignItems);
   return (
     <ContentWrapper
       style={style}

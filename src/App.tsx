@@ -1,9 +1,9 @@
 import "./styles.css";
-import Popover from "./Popover";
+import Popover from "./components/popover/Popover";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
-import InfoContent from "./InfoContent";
+import InfoContent from "./components/InfoContent";
 
 const GroupElements = styled.div`
   margin: 64px 0;
@@ -36,7 +36,7 @@ export default function App() {
             direction="row"
             alignItems="start"
           >
-            <FontAwesomeIcon icon={faInfoCircle} size="2x" color="red" />
+            <FontAwesomeIcon icon={faInfoCircle} size="2x" color="#3F9EEA" />
           </Popover>
 
           <Popover
@@ -44,7 +44,7 @@ export default function App() {
             direction="row-reverse"
             alignItems="start"
           >
-            <FontAwesomeIcon icon={faInfoCircle} size="2x" color="green" />
+            <FontAwesomeIcon icon={faInfoCircle} size="2x" color="#3F9EEA" />
           </Popover>
 
           <Popover
@@ -60,7 +60,7 @@ export default function App() {
             direction="row-reverse"
             alignItems="end"
           >
-            <FontAwesomeIcon icon={faInfoCircle} size="2x" color="gold" />
+            <FontAwesomeIcon icon={faInfoCircle} size="2x" color="#3F9EEA" />
           </Popover>
         </SomeContainer>
       </GroupElements>
@@ -73,7 +73,7 @@ export default function App() {
             direction="column"
             alignItems="start"
           >
-            <FontAwesomeIcon icon={faInfoCircle} size="2x" color="red" />
+            <FontAwesomeIcon icon={faInfoCircle} size="2x" color="#3F9EEA" />
           </Popover>
 
           <Popover
@@ -81,7 +81,7 @@ export default function App() {
             direction="column"
             alignItems="end"
           >
-            <FontAwesomeIcon icon={faInfoCircle} size="2x" color="green" />
+            <FontAwesomeIcon icon={faInfoCircle} size="2x" color="#3F9EEA" />
           </Popover>
 
           <Popover
@@ -97,7 +97,7 @@ export default function App() {
             direction="column-reverse"
             alignItems="end"
           >
-            <FontAwesomeIcon icon={faInfoCircle} size="2x" color="gold" />
+            <FontAwesomeIcon icon={faInfoCircle} size="2x" color="#3F9EEA" />
           </Popover>
         </SomeContainer>
       </GroupElements>
